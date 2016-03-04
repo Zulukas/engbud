@@ -75,6 +75,7 @@ public class GetData extends HttpServlet {
         PrintWriter writer = response.getWriter();
         
         writer.println("Hello World");
+        writer.flush();
     }
 
     /**
