@@ -21,103 +21,84 @@
     <script type='text/javascript' href="index.js">
         window.onload=function(){
             var classHighlight = 'highlight';
+
             var $thumbs = $('.entry').click(function(e) {
                 e.preventDefault();
                 $thumbs.removeClass(classHighlight);
                 $(this).addClass(classHighlight);
-                  
-            var strDate = $(this).text();
-            
-            var client;
-            var data;
-            var url_action="http://localhost:8080/EngineeringBuddy/GetData";
-            if(window.XMLHttpRequest)
-            {
-                client=new XMLHttpRequest();
-            }
-            else
-            {                
-                alert("ASDF");
-            }
-            client.onreadystatechange=function()
-            {
-                if (client.readyState==4 && client.status==200)
-                {                     
-                    var data = client.responseType;
-                    console.log(client);
-                    alert(data);
-                }
-            };
-            
-            client.open("POST",url_action,true);
-            client.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            client.send(strDate);
-        });
-        }
+
+                var strDate = $(this).text();
+
+                $.get("GetData", {date:strDate}, function(responseText) {
+                    $("#somediv").text(responseText);
+                });
+
+            });
+        }        
       </script>
 </head>
 <body>
     <input type="hidden" id="hidReqAttr" value="${location}" />
     <h1></h1>
-    <form action="GetData" method="POST">
-        <ul class="entrylist">
-            <li>
-                <div class="entry" id="topentry">
-                    May 08, 2015
-                </div>    
-            </li>    
-            <li>
-                <div class="entry">
-                    May 13, 2015
-                </div>
-            </li>
-            <li>
-                <div class="entry">
-                    May 18, 2015
-                </div>
-            </li>
-            <li>
-                <div class="entry">
-                    May 21, 2015
-                </div>
-            </li>
-            <li>
-                <div class="entry">
-                    Jun 03, 2015
-                </div>
-            </li>
-            <li>
-                <div class="entry">
-                    Jun 10, 2015
-                </div>
-            </li>
-            <li>
-                <div class="entry">
-                    Jun 12, 2015
-                </div>
-            </li>
-            <li>
-                <div class="entry">
-                    Jun 15, 2015
-                </div>
-            </li>
-            <li>
-                <div class="entry">
-                    Jul 08, 2015
-                </div>
-            </li>
-            <li>
-                <div class="entry">
-                    Aug 11, 2015
-                </div>
-            </li>
-            <li>
-                <div class="entry" id="bottomentry">
-                    Aug 25, 2015
-                </div>    
-            </li>
-        </ul>
-    </form>
+    
+    <div id="somediv"></div>
+    <ul class="entrylist">
+        <li>
+            <div class="entry" id="topentry">
+                May 08, 2015
+            </div>    
+        </li>    
+        <li>
+            <div class="entry">
+                May 13, 2015
+            </div>
+        </li>
+        <li>
+            <div class="entry">
+                May 18, 2015
+            </div>
+        </li>
+        <li>
+            <div class="entry">
+                May 21, 2015
+            </div>
+        </li>
+        <li>
+            <div class="entry">
+                Jun 03, 2015
+            </div>
+        </li>
+        <li>
+            <div class="entry">
+                Jun 10, 2015
+            </div>
+        </li>
+        <li>
+            <div class="entry">
+                Jun 12, 2015
+            </div>
+        </li>
+        <li>
+            <div class="entry">
+                Jun 15, 2015
+            </div>
+        </li>
+        <li>
+            <div class="entry">
+                Jul 08, 2015
+            </div>
+        </li>
+        <li>
+            <div class="entry">
+                Aug 11, 2015
+            </div>
+        </li>
+        <li>
+            <div class="entry" id="bottomentry">
+                Aug 25, 2015
+            </div>    
+        </li>
+    </ul>    
 
 </body>
 </html>
